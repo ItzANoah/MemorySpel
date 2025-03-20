@@ -1,0 +1,83 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh; /* volledig scherm hoogte gebruiken */
+    display: flex; /* flexbox maken */
+    flex-direction: column; /* Zet de richting naar kolom zodat header boven spel komt */
+    align-items: center; /* Centreer de items horizontaal */
+    justify-content: center; /* Zorgt ervoor dat alles in het midden van de pagina staat */
+    background: lightblue; 
+  }
+
+  .headertext {
+    margin-top: 5%; /* ruimte tussen bovenkant van de pagina en de tekst */
+    display: flex; /*flexbox gebruiken */
+    flex-direction: column; /* Zorgt ervoor dat alles onder elkaar komt */
+    align-items: center; /* Centreert de tekst horizontaal */
+    text-align: center; /* Zorgt ervoor dat de tekst netjes gecentreerd blijft */
+    gap: 5px; /* Voegt een kleine ruimte toe tussen de regels tekst */
+    max-width: 35%; /* zorgt ervoor dat de tekst in de middelste 35% van de website blijft */
+}
+
+ .memorySpel {
+    width: 500px; /* de groote van het spel */
+    height: 500px;
+    margin: auto; /* spel in het midden van het scherm */
+    display: flex;
+    flex-wrap: wrap; /* zorgt ervoor dat de kaartjes onder elkaar gaan als ze niet in een rij passen */
+    perspective: 1000px; /* zorgt voor 3d effect waardoor de kaarten kunnen draaien */ 
+  }
+
+  .kaartVoorkant,
+.kaartAchterkant {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  backface-visibility: hidden; /* achterkant niet zichtbaar totdat de kaart is omgedraaid */
+  transition: transform 0.6s ease; /* Zorgt ervoor dat de voorkant en achterkant soepel draaien */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #ffffff;
+  border-radius: 10px;
+  transition-delay: 0.1s; /* Kleine vertraging voor vloeiendere animatie */
+}
+
+.memoryKaarten img, .memoryKaarten img {
+  width: 80%;
+  height: 80%;
+  object-fit: contain; /* Voorkomt vervorming van de afbeelding */
+}
+
+.memoryKaarten {
+    display: flex;
+    align-items: center; /* Centreert de afbeelding verticaal */
+    justify-content: center; /* Centreert de afbeelding horizontaal */
+    width: calc(25% - 10px); /* zorgt ervoor dat elke kaart 25% inneemt en er dus 4 naast elkaar passen */
+    height: calc(25% - 10px);
+    margin: 5px; /* ruimte tussen de kaarten */
+    position: relative; 
+    transform: scale(1); /* zorgt ervoor dat 100% van de grote worden behouden */
+    transform-style: preserve-3d; /* behoudt het effect zodat de kaart in 3d kan draaien */
+    box-shadow: 1px 1px 1px rgba(0,0,0,.3); /* lichte shaduw */
+    border-radius: 20px;
+    background: #ffffff;
+    transition: transform 0.6s ease; /* Voegt een soepele draai-animatie toe */
+  }
+
+ .memoryKaarten:active {
+   transform: scale(0.97);  /* kaart krimpt een beetje om klik effect te simuleren */
+   transition: transform .2s; /* soepele animatie */
+ } 
+
+ .memoryKaarten.draai{
+    transform: rotateY(180deg); /* wanneer er "draai" word toegevoegd aan een kaart draait deze 180 graden op de Y as */
+ }
+
+ .kaartVoorkant {
+  transform: rotateY(180deg); /* wanneer er "draai" word verwijderd draait de kaart 180 graden terug op de y as */
+}
